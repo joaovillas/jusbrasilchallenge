@@ -4,6 +4,7 @@ import Root from '../../components/Root';
 import Me from '../../assets/eu.jfif';
 import Divider from '@material-ui/core/Divider';
 import Icon from '@material-ui/core/Icon';
+import { NavLink } from "react-router-dom";
 
 const styles = theme => ({
     root: {
@@ -37,9 +38,8 @@ class Home extends Component {
 
                         <Typography style={{ marginBottom: 16, marginTop: 16, marginRight: 50, color: "#2d301e", fontFamily: "Bree Serif', serif" }}
                             variant="h5" align="left" gutterBottom>
-                            Hello World, I'm João Pedro, Computer Science Student at <a href="https://www.unifacs.br/"> UNIFACS </a>. Web Developer Lover and Martial Arts Enthusiast and This is my submission to Jusbrasil Challenger for Interniship Job.
+                            Hello World, I'm João Pedro, Computer Science Student at <a href="https://www.unifacs.br/"> UNIFACS </a>. Web Developer Lover and Martial Arts Enthusiast and This is my submission to Jusbrasil <NavLink to="/challenge">Challenge</NavLink> for Interniship Job.
                         </Typography>
-
                     </div>
                     <Divider />
                     <div align="left" style={{ marginLeft: 50 }}>

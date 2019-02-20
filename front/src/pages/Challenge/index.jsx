@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Typography from '@material-ui/core/Typography';
 import Root from '../../components/Root';
 import Divider from '@material-ui/core/Divider';
-import AutoCompleteInput from '../../components/AutoCompleteInput';
+import AutoCompleteInput from '../../components/AutoCompleteInput/';
 
 const styles = theme => ({
     root: {
@@ -28,7 +28,6 @@ class Home extends Component {
 
                     <div align="left" style={{ marginTop: "5vh" }}>
                         <AutoCompleteInput/>
-
                     </div>
 
                 </Root>

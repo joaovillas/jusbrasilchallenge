@@ -48,7 +48,7 @@ const suggestions = [
 ];
 
 function renderInputComponent(inputProps) {
-  const { classes, inputRef = () => {}, ref, ...other } = inputProps;
+  const { classes, inputRef = () => { }, ref, ...other } = inputProps;
 
   return (
     <TextField
@@ -80,10 +80,10 @@ function renderSuggestion(suggestion, { query, isHighlighted }) {
               {part.text}
             </span>
           ) : (
-            <strong key={String(index)} style={{ fontWeight: 300 }}>
-              {part.text}
-            </strong>
-          ),
+              <strong key={String(index)} style={{ fontWeight: 300 }}>
+                {part.text}
+              </strong>
+            ),
         )}
       </div>
     </MenuItem>
@@ -98,15 +98,15 @@ function getSuggestions(value) {
   return inputLength === 0
     ? []
     : suggestions.filter(suggestion => {
-        const keep =
-          count < 5 && suggestion.label.slice(0, inputLength).toLowerCase() === inputValue;
+      const keep =
+        count < 5 && suggestion.label.slice(0, inputLength).toLowerCase() === inputValue;
 
-        if (keep) {
-          count += 1;
-        }
+      if (keep) {
+        count += 1;
+      }
 
-        return keep;
-      });
+      return keep;
+    });
 }
 
 function getSuggestionValue(suggestion) {
@@ -198,38 +198,6 @@ class IntegrationAutosuggest extends React.Component {
             <Paper {...options.containerProps} square>
               {options.children}
             </Paper>
-          )}
-        />
-        <div className={classes.divider} />
-        <Autosuggest
-          {...autosuggestProps}
-          inputProps={{
-            classes,
-            label: 'Label',
-            placeholder: 'With Popper',
-            value: this.state.popper,
-            onChange: this.handleChange('popper'),
-            inputRef: node => {
-              this.popperNode = node;
-            },
-            InputLabelProps: {
-              shrink: true,
-            },
-          }}
-          theme={{
-            suggestionsList: classes.suggestionsList,
-            suggestion: classes.suggestion,
-          }}
-          renderSuggestionsContainer={options => (
-            <Popper anchorEl={this.popperNode} open={Boolean(options.children)}>
-              <Paper
-                square
-                {...options.containerProps}
-                style={{ width: this.popperNode ? this.popperNode.clientWidth : null }}
-              >
-                {options.children}
-              </Paper>
-            </Popper>
           )}
         />
       </div>
