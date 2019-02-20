@@ -12,3 +12,36 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+h1,h2,h3,h4,h5,h6{
+  color: black;
+  font-family: 'Coiny', cursive;;
+}
+
+.img-heading{
+  max-width: 20wh;
+  max-height: 50vh;
+  border-radius: 6px;
+  margin-bottom: 5vh;
+}
+
+.title{ 
+  margin-bottom: 16;
+  margin-top: 16;
+  font-family: "Coiny, cursive" 
+}
+
+a:visited{
+  color:#a48c70;
+  text-decoration: none;
+}
+  
+a:link{
+  color:#a48c70;
+  text-decoration: none;
+} 
+  
+a:hover{
+  color:#1c1b35;
+  text-decoration:none;
+}
