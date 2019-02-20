@@ -35,7 +35,7 @@ class Root extends Component {
                                         direction="column"
                                         justify="space-between"
                                     >
-                                        <Paper style={{marginBottom:50}}>
+                                        <Paper style={{marginBottom:50, paddingBottom:"25vh"}}>
                                             {children}
                                         </Paper>
 

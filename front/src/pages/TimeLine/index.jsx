@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import Typography from '@material-ui/core/Typography';
 import Root from '../../components/Root';
 import Divider from '@material-ui/core/Divider';
-import Chart from '../../components/Chart/';
-import Skill from '../../assets/skills.jpg';
+import TimeLineComponent from '../../components/TimeLine';
 
 const styles = theme => ({
     root: {
@@ -28,13 +27,11 @@ class TimeLine extends Component {
                     </div>
 
                     <div align="center" style={{ marginLeft: 50 }}>
-                        <img src={Skill} className="img-heading" alt=""/>
                         <Typography style={{ marginBottom: 16, marginTop: 16, marginRight: 50, color: "#2d301e", fontFamily: "Bree Serif', serif" }}
                             variant="h5" align="left" gutterBottom>
-                            Here are some of my habilities:<br />
-                            The chart's showing up my willingness to working with the language, is ranked from 0 to 10.
+                            Here is my history as a Developer.
                         </Typography>
-                        
+                        <TimeLineComponent />
                     </div>
                 </Root>
             </div>

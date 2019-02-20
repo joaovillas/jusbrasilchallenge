@@ -10,7 +10,8 @@
     "react-google-charts": "^3.0.10",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.5",
-    "react-vertical-timeline-component": "^2.3.1"
+    "react-vertical-timeline-component": "^2.3.1",
+    "vertical-timeline-component-for-react": "^1.0.6"
   },
   "scripts": {
     "start": "react-scripts start",
