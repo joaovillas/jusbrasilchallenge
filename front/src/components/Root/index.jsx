@@ -21,7 +21,7 @@ class Root extends Component {
     render() {
         const { classes, children, history } = this.props;
         return (
-            <div>
+            <div style={{marginBottom:10}}>
                 <AppBar />
                 <main className={styles.content}>
                     <React.Fragment>
@@ -35,7 +35,7 @@ class Root extends Component {
                                         direction="column"
                                         justify="space-between"
                                     >
-                                        <Paper>
+                                        <Paper style={{marginBottom:50}}>
                                             {children}
                                         </Paper>
 
