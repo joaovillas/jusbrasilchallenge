@@ -4,6 +4,7 @@ import defaultTheme from './theme';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Home from '../pages/Home';
 import Skills from '../pages/Skills';
+import TimeLine from '../pages/TimeLine';
 import '../index.css';
 class App extends Component {
     render() {
@@ -13,6 +14,7 @@ class App extends Component {
                     <div>
                         <Route exact path="/" component={Home} />
                         <Route path="/skills" component={Skills} />
+                        <Route path="/timeline" component={TimeLine} />
                     </div>
                 </Router>
             </MuiThemeProvider>

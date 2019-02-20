@@ -9,7 +9,8 @@
     "react-dom": "^16.8.2",
     "react-google-charts": "^3.0.10",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "2.1.5"
+    "react-scripts": "2.1.5",
+    "react-vertical-timeline-component": "^2.3.1"
   },
   "scripts": {
     "start": "react-scripts start",
