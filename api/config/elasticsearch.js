@@ -45,7 +45,7 @@ function addDocument(document) {
       title: document.title,
       type: document.type,
       suggest: {
-        input: document.title.split(" "),
+        input: document.title.split(" ")
         // output: document.title
       }
     }
@@ -59,8 +59,16 @@ function initMapping() {
     type: "document",
     body: {
       properties: {
-        title: { type: "text" },
-        type: { type: "text" },
+        title: {
+          type: "completion",
+          analyzer: "simple",
+          search_analyzer: "simple"
+        },
+        type: {
+          type: "completion",
+          analyzer: "simple",
+          search_analyzer: "simple"
+        },
         suggest: {
           type: "completion",
           analyzer: "simple",
@@ -72,19 +80,42 @@ function initMapping() {
 }
 exports.initMapping = initMapping;
 
-function getSuggestions(input) {
+function getSuggestions(text) {
   return elasticClient.search({
     index: indexName,
     type: "document",
     body: {
-      docsuggest: {
-        text: input,
-        completion: {
-          field: "suggest",
-          fuzzy: true
+      suggest: {
+        titleSuggester: {
+          prefix: text,
+          completion: {
+            field: "title",
+            fuzzy: {
+              fuzziness: "auto"
+            }
+          }
+        },
+        typeSuggester: {
+          prefix: text,
+          completion: {
+            field: "type",
+            fuzzy: {
+              fuzziness: "auto"
+            }
+          }
         }
       }
     }
   });
 }
 exports.getSuggestions = getSuggestions;
+
+function bulkAddDocument() {
+  return elasticClient.bulk({
+    index: indexName,
+    type: "document",
+    body: [],
+    refresh: "true"
+  });
+}
+exports.bulkAddDocument = bulkAddDocument;

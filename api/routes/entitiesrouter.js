@@ -4,19 +4,18 @@ var axios = require("axios");
 var bodyParser = require("body-parser");
 var router = express.Router();
 
-const ELASTIC_SEARCH_URL = "http://localhost:9200/entities/documents";
-
 router.use(bodyParser());
-router.get("/", (req, res) => {
+router.get("/:input", (req, res) => {
   elasticsearch
-    .getSuggestions("A")
-    .then(resp => console.log(resp))
-    .catch(err => console.log(err));
+    .getSuggestions(req.params.input)
+    .then(resp => res.json(resp))
+    .catch(err => res.json(err));
 });
 
 router.post("/", (req, res) => {
   let request = {};
   request = req.body;
+  console.log(JSON.stringify(request));
   elasticsearch
     .addDocument(request)
     .then(resp => res.json(resp))
