@@ -3,7 +3,7 @@ var elasticsearch = require("../config/elasticsearch.js");
 var axios = require("axios");
 var bodyParser = require("body-parser");
 var router = express.Router();
-var cors = require("cors")
+var cors = require("cors");
 
 router.use(cors());
 router.use(bodyParser());

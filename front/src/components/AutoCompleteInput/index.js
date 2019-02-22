@@ -10,13 +10,13 @@ import MenuItem from "@material-ui/core/MenuItem";
 import { withStyles } from "@material-ui/core/styles";
 import axios from 'axios';
 
-const suggestions = [];
-
 function renderInputComponent(inputProps) {
   const { classes, inputRef = () => {}, ref, ...other } = inputProps;
 
   return (
     <TextField
+      fullWidth
+      variant="outlined"
       InputProps={{
         inputRef: node => {
           ref(node);
@@ -32,8 +32,8 @@ function renderInputComponent(inputProps) {
 }
 
 function renderSuggestion(suggestion, { query, isHighlighted }) {
-  const matches = match(suggestion.label, query);
-  const parts = parse(suggestion.label, matches);
+  const matches = match(suggestion.text, query);
+  const parts = parse(suggestion.text, matches);
 
   return (
     <MenuItem selected={isHighlighted} component="div">
@@ -58,31 +58,21 @@ function getSuggestions(value) {
   const inputValue = deburr(value.trim()).toLowerCase();
   const inputLength = inputValue.length;
   let count = 0;
-  axios.get('http://localhost:5000/entities/'+inputValue).then(res=>console.log(res)).catch(err=>console.log(err));
-
-  return inputLength === 0
-    ? []
-    : suggestions.filter(suggestion => {
-        const keep =
-          count < 5 &&
-          suggestion.label.slice(0, inputLength).toLowerCase() === inputValue;
-
-        if (keep) {
-          count += 1;
-        }
-
-        return keep;
-      });
+  
+  return axios.get('http://localhost:5000/entities/'+inputValue).then(resp => {return resp.data.suggest.titleSuggester[0].options});
 }
 
 function getSuggestionValue(suggestion) {
-  return suggestion.label;
+  return suggestion.text;
 }
 
 const styles = theme => ({
   root: {
     height: 250,
-    flexGrow: 1
+    flexGrow: 1,
+    marginTop:50,
+    paddingLeft:100,
+    paddingRight:100
   },
   container: {
     position: "relative"
@@ -115,15 +105,16 @@ class IntegrationAutosuggest extends React.Component {
   };
 
   handleSuggestionsFetchRequested = ({ value }) => {
-    this.setState({
-      suggestions: getSuggestions(value)
-    });
+    let suggests = getSuggestions(value);  
+    suggests.then(resp=>this.setState({suggestions:resp}))
+    console.log(this.state);
   };
 
   handleSuggestionsClearRequested = () => {
     this.setState({
       suggestions: []
     });
+    
   };
 
   handleChange = name => (event, { newValue }) => {
@@ -150,7 +141,7 @@ class IntegrationAutosuggest extends React.Component {
           {...autosuggestProps}
           inputProps={{
             classes,
-            placeholder: "Search a country (start with a)",
+            placeholder: "Type ahead and see!",
             value: this.state.single,
             onChange: this.handleChange("single")
           }}
