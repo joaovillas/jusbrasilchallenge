@@ -8,7 +8,7 @@ import TextField from "@material-ui/core/TextField";
 import Paper from "@material-ui/core/Paper";
 import MenuItem from "@material-ui/core/MenuItem";
 import { withStyles } from "@material-ui/core/styles";
-import axios from 'axios';
+import axios from "axios";
 
 function renderInputComponent(inputProps) {
   const { classes, inputRef = () => {}, ref, ...other } = inputProps;
@@ -58,8 +58,16 @@ function getSuggestions(value) {
   const inputValue = deburr(value.trim()).toLowerCase();
   const inputLength = inputValue.length;
   let count = 0;
-  
-  return axios.get('http://localhost:5000/entities/?q='+inputValue).then(resp => {return resp.data.suggest.titleSuggester[0].options});
+
+  return axios
+    .get("http://localhost:5000/entities/?q=" + inputValue)
+    .then(resp => {
+      try{
+        return resp.data.suggest.titleSuggester[0].options;
+      }catch(ex){
+        return [];
+      }
+    });
 }
 
 function getSuggestionValue(suggestion) {
@@ -70,9 +78,9 @@ const styles = theme => ({
   root: {
     height: 250,
     flexGrow: 1,
-    marginTop:50,
-    paddingLeft:100,
-    paddingRight:100
+    marginTop: 50,
+    paddingLeft: 100,
+    paddingRight: 100
   },
   container: {
     position: "relative"
@@ -105,8 +113,8 @@ class IntegrationAutosuggest extends React.Component {
   };
 
   handleSuggestionsFetchRequested = ({ value }) => {
-    let suggests = getSuggestions(value);  
-    suggests.then(resp=>this.setState({suggestions:resp}))
+    let suggests = getSuggestions(value);
+    suggests.then(resp => this.setState({ suggestions: resp }));
     console.log(this.state);
   };
 
@@ -114,7 +122,6 @@ class IntegrationAutosuggest extends React.Component {
     this.setState({
       suggestions: []
     });
-    
   };
 
   handleChange = name => (event, { newValue }) => {
