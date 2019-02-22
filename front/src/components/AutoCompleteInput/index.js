@@ -59,7 +59,7 @@ function getSuggestions(value) {
   const inputLength = inputValue.length;
   let count = 0;
   
-  return axios.get('http://localhost:5000/entities/'+inputValue).then(resp => {return resp.data.suggest.titleSuggester[0].options});
+  return axios.get('http://localhost:5000/entities/?q='+inputValue).then(resp => {return resp.data.suggest.titleSuggester[0].options});
 }
 
 function getSuggestionValue(suggestion) {

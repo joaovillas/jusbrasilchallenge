@@ -7,9 +7,10 @@ var cors = require("cors");
 
 router.use(cors());
 router.use(bodyParser());
-router.get("/:input", (req, res) => {
+router.get("/", (req, res) => {
+
   elasticsearch
-    .getSuggestions(req.params.input)
+    .getSuggestions(req.query.q)
     .then(resp => res.json(resp))
     .catch(err => res.json(err));
 });
@@ -17,7 +18,6 @@ router.get("/:input", (req, res) => {
 router.post("/", (req, res) => {
   let request = {};
   request = req.body;
-  console.log(JSON.stringify(request));
   elasticsearch
     .addDocument(request)
     .then(resp => res.json(resp))
