@@ -1,0 +1,21 @@
+{
+  "name": "se",
+  "version": "1.0.0",
+  "description": "server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "author": "joao villas",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "cheerio": "^1.0.0-rc.2",
+    "elasticsearch": "^15.4.1",
+    "express": "^4.16.4",
+    "jasmine": "^3.3.1",
+    "nodemon": "^1.18.10",
+    "request": "^2.88.0"
+  }
+}
