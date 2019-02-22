@@ -5,7 +5,7 @@ var bodyParser = require("body-parser");
 var router = express.Router();
 var cors = require("cors")
 
-router.use(cors);
+router.use(cors());
 router.use(bodyParser());
 router.get("/:input", (req, res) => {
   elasticsearch
