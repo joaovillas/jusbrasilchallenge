@@ -1,11 +1,13 @@
 var express = require("express");
 var entitiesrouter = require("./routes/entitiesrouter");
 var elasticsearch = require("./config/elasticsearch");
-bodyParser = require("body-parser");
+var bodyParser = require("body-parser");
+var cors = require("cors")
 
 app = express();
 app.use(bodyParser.json());
 app.use("/entities", entitiesrouter);
+app.use(cors());
 
 app.listen(5000, () => {
   elasticsearch.indexExists().then(response => {
@@ -20,9 +22,9 @@ app.listen(5000, () => {
         })
         .catch(err => console.log(err));
     } else {
-      elasticsearch
-        .deleteIndex()
-        .then(
+      // elasticsearch
+      //   .deleteIndex()
+      //   .then(
           elasticsearch
             .initIndex()
             .then(() => {
@@ -32,8 +34,8 @@ app.listen(5000, () => {
                 .catch(err => console.log(err));
             })
             .catch(err => console.log(err))
-        )
-        .catch(err => console.log(err));
+        // )
+        // .catch(err => console.log(err));
     }
   });
   console.log("Server running at port 5000");
