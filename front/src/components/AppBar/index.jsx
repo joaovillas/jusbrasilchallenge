@@ -16,14 +16,14 @@ import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import Icon from '@material-ui/core/Icon';
+import Icon from "@material-ui/core/Icon";
 import { NavLink } from "react-router-dom";
 
 const navliks = [
-  { name: "Home", icon: "home" , route:"/" },
-  { name: "Challenge", icon: "search", route:"challenge" },
-  { name: "Skills", icon: "bar_chart" , route:"skills"},
-  { name: "Timeline", icon: "timeline", route:"timeline" }
+  { name: "Home", icon: "home", route: "/" },
+  { name: "Challenge", icon: "search", route: "challenge" },
+  { name: "Skills", icon: "bar_chart", route: "skills" },
+  { name: "Timeline", icon: "timeline", route: "timeline" }
 ];
 
 const drawerWidth = 240;
@@ -120,6 +120,7 @@ class PersistentDrawerLeft extends React.Component {
             >
               <MenuIcon />
             </IconButton>
+              <p style={{ marginLeft: 90 }}>Joao Pedro Villas Boas</p>
           </Toolbar>
         </AppBar>
         <Drawer
@@ -143,14 +144,14 @@ class PersistentDrawerLeft extends React.Component {
           <Divider />
           <List>
             {navliks.map((link, index) => (
-              <NavLink to={link.route}>         
-              <ListItem button key={link.name}>
-                <ListItemIcon>
+              <NavLink to={link.route}>
+                <ListItem button key={link.name}>
+                  <ListItemIcon>
                     <Icon>{link.icon}</Icon>
-                </ListItemIcon>
-                <ListItemText primary={link.name} />
-              </ListItem>
-            </NavLink>
+                  </ListItemIcon>
+                  <ListItemText primary={link.name} />
+                </ListItem>
+              </NavLink>
             ))}
           </List>
           <Divider />

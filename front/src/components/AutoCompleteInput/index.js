@@ -46,6 +46,7 @@ function renderSuggestion(suggestion, { query, isHighlighted }) {
           ) : (
             <strong key={String(index)} style={{ fontWeight: 300 }}>
               {part.text}
+              <img src="" />
             </strong>
           )
         )}
@@ -148,7 +149,7 @@ class IntegrationAutosuggest extends React.Component {
           {...autosuggestProps}
           inputProps={{
             classes,
-            placeholder: "Type ahead and see!",
+            placeholder: "Type something here!",
             value: this.state.single,
             onChange: this.handleChange("single")
           }}
@@ -161,6 +162,7 @@ class IntegrationAutosuggest extends React.Component {
           renderSuggestionsContainer={options => (
             <Paper {...options.containerProps} square>
               {options.children}
+              
             </Paper>
           )}
         />

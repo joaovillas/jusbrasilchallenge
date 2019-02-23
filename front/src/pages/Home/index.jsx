@@ -38,7 +38,7 @@ class Home extends Component {
 
                         <Typography style={{ marginBottom: 16, marginTop: 16, marginRight: 50, color: "#2d301e", fontFamily: "Bree Serif', serif" }}
                             variant="h5" align="left" gutterBottom>
-                            Hello World, I'm João Pedro, Computer Science Student at <a href="https://www.unifacs.br/"> UNIFACS </a>. Web Developer Lover and Martial Arts Enthusiast and This is my submission to Jusbrasil <NavLink to="/challenge">Challenge</NavLink> for Interniship Job.
+                            Hello World, I'm João Pedro, Computer Science Student at <a href="https://www.unifacs.br/"> UNIFACS </a>. Web Developer Lover, Martial Arts Enthusiast and this is my submission to Jusbrasil <NavLink to="/challenge">Challenge</NavLink> for Interniship Job.
                         </Typography>
                     </div>
                     <Divider />
