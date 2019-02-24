@@ -46,7 +46,6 @@ function renderSuggestion(suggestion, { query, isHighlighted }) {
           ) : (
             <strong key={String(index)} style={{ fontWeight: 300 }}>
               {part.text}
-              <img src="" />
             </strong>
           )
         )}
@@ -57,8 +56,6 @@ function renderSuggestion(suggestion, { query, isHighlighted }) {
 
 function getSuggestions(value) {
   const inputValue = deburr(value.trim()).toLowerCase();
-  const inputLength = inputValue.length;
-  let count = 0;
 
   return axios
     .get("http://localhost:5000/entities/search?q=" + inputValue)

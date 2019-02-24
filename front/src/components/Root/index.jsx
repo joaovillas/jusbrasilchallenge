@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import AppBar from '../../components/AppBar';
 import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
 import Box from '../Box/Box';
 import Grid from '@material-ui/core/Grid';
 
-const drawerWidth = 240;
 
 const styles = theme => ({
     root: {
@@ -19,7 +17,7 @@ const styles = theme => ({
 
 class Root extends Component {
     render() {
-        const { classes, children, history } = this.props;
+        const { children } = this.props;
         return (
             <div style={{marginBottom:10}}>
                 <AppBar />

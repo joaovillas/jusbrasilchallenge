@@ -4,14 +4,6 @@ import Root from '../../components/Root';
 import Divider from '@material-ui/core/Divider';
 import TimeLineComponent from '../../components/TimeLine';
 
-const styles = theme => ({
-    root: {
-        ...theme.mixins.gutters(),
-        paddingTop: theme.spacing.unit * 2,
-        paddingBottom: theme.spacing.unit * 2,
-    },
-});
-
 
 class TimeLine extends Component {
     render() {
