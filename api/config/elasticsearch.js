@@ -21,11 +21,25 @@ exports.deleteIndex = deleteIndex;
  * create the index
  */
 function initIndex() {
-  return elasticClient.indices.create({
-    index: indexName
+  return elasticClient.indices
+    .create({
+      index: indexName
+    })
+    .then(() => {
+      configureIndex().then(resp=>console.log(resp));
+    });
+}
+
+exports.initIndex = initIndex;
+
+function configureIndex() {
+  return elasticClient.indices.putSettings({
+    index: indexName,
+    body: {
+      "index.blocks.read_only_allow_delete": null
+    }
   });
 }
-exports.initIndex = initIndex;
 
 /**
  * check if the index exists
@@ -130,7 +144,7 @@ function searchQuery(title, type) {
       body: {
         query: {
           bool: {
-            must: { match: { title: title } },
+            must: { match: { title: title } }
           }
         }
       }
@@ -142,7 +156,7 @@ function searchQuery(title, type) {
       body: {
         query: {
           bool: {
-            must: [{ match: { title: title } },{ match: { type: type } }] 
+            must: [{ match: { title: title } }, { match: { type: type } }]
           }
         }
       }
