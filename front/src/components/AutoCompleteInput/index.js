@@ -61,7 +61,7 @@ function getSuggestions(value) {
   let count = 0;
 
   return axios
-    .get("http://localhost:5000/entities/?q=" + inputValue)
+    .get("http://localhost:5000/entities/search?q=" + inputValue)
     .then(resp => {
       try{
         return resp.data.suggest.titleSuggester[0].options;

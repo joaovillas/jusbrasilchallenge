@@ -55,7 +55,7 @@ class Home extends Component {
               gutterBottom
             >
               I've never used ElasticSearch before, it really challenged me a
-              lot, but I finished. Thank you guys for the opportunite and I'll
+              lot, but I finished. Thank you guys for the opportunitie and I'll
               love if you guys make myself better, I know a lot about
               Jusbrasil, and I'll do my best for help where it need. Here is <NavLink  to="skills">My Skills</NavLink> and <NavLink to="timeline">My TimeLine</NavLink> as a developer.
             </Typography>

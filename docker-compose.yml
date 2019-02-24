@@ -1,0 +1,75 @@
+version: "3"
+
+services:
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:5.6.2
+    environment:
+      - discovery.type=single-node
+      - http.host=0.0.0.0
+      - transport.host=127.0.0.1
+      - xpack.security.enabled=false
+      - ES_JAVA_OPTS=-Xms750m -Xmx750m
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - .:/usr/share/elasticsearch/data
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9200"]
+      interval: 90s
+      timeout: 90s
+      retries: 10
+
+    ports:
+      - 9200:9200
+    networks:
+      - bridge
+
+  client:
+    build: ./front
+    container_name: clientchallenge
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/client
+    networks:
+      - bridge
+    entrypoint: "npm start"
+
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000"]
+      interval: 90s
+      timeout: 90s
+      retries: 10
+
+    restart: on-failure
+
+  api:
+    build: ./api
+    container_name: apichallenge
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/api
+    networks:
+      - bridge
+    entrypoint: "npm start"
+    depends_on:
+      client:
+        condition: service_healthy
+    restart: on-failure
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000"]
+      interval: 90s
+      timeout: 90s
+      retries: 10
+
+    links:
+      - elasticsearch
+
+networks:
+  bridge:

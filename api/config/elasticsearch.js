@@ -1,7 +1,7 @@
 var elasticsearch = require("elasticsearch");
 
 var elasticClient = new elasticsearch.Client({
-  host: "http://192.168.99.100:9200",
+  host: "http://localhost:9200",
   log: "info"
 });
 
@@ -80,14 +80,14 @@ function initMapping() {
 }
 exports.initMapping = initMapping;
 
-function getSuggestions(text) {
+function getSuggestions(title) {
   return elasticClient.search({
     index: indexName,
     type: "document",
     body: {
       suggest: {
         titleSuggester: {
-          prefix: text,
+          prefix: title,
           completion: {
             field: "title",
             fuzzy: {
@@ -96,7 +96,7 @@ function getSuggestions(text) {
           }
         },
         typeSuggester: {
-          prefix: text,
+          prefix: title,
           completion: {
             field: "type",
             fuzzy: {
@@ -120,3 +120,35 @@ function bulkAddDocument() {
 }
 exports.bulkAddDocument = bulkAddDocument;
 
+function searchQuery(title, type) {
+  var query = {};
+
+  if (type === "") {
+    query = {
+      index: indexName,
+      type: "document",
+      body: {
+        query: {
+          bool: {
+            must: { match: { title: title } },
+          }
+        }
+      }
+    };
+  } else {
+    query = {
+      index: indexName,
+      type: "document",
+      body: {
+        query: {
+          bool: {
+            must: [{ match: { title: title } },{ match: { type: type } }] 
+          }
+        }
+      }
+    };
+  }
+
+  return elasticClient.search(query);
+}
+exports.searchQuery = searchQuery;

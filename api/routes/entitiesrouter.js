@@ -1,16 +1,19 @@
 var express = require("express");
 var elasticsearch = require("../config/elasticsearch.js");
-var axios = require("axios");
 var bodyParser = require("body-parser");
 var router = express.Router();
 var cors = require("cors");
 
 router.use(cors());
 router.use(bodyParser());
-router.get("/", (req, res) => {
+router.get("/search", (req, res) => {
+  request = {};
+  request.q = "";
+  request.entity_type = "";
 
+  request.q = req.query.q === undefined ? "" : req.query.q;
   elasticsearch
-    .getSuggestions(req.query.q)
+    .getSuggestions(request.q)
     .then(resp => res.json(resp))
     .catch(err => res.json(err));
 });
@@ -20,6 +23,20 @@ router.post("/", (req, res) => {
   request = req.body;
   elasticsearch
     .addDocument(request)
+    .then(resp => res.json(resp))
+    .catch(err => res.json(err));
+});
+
+router.get("/", (req, res) => {
+  let request = {};
+
+  request.q = req.query.q === undefined ? "" : req.query.q;
+  request.entity_type = req.query.entity_type === undefined ? "" : req.query.entity_type;
+
+  console.log(request)
+
+  elasticsearch
+    .searchQuery(request.q , request.entity_type)
     .then(resp => res.json(resp))
     .catch(err => res.json(err));
 });
