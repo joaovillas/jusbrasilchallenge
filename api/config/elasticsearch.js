@@ -1,8 +1,8 @@
 var elasticsearch = require("elasticsearch");
 
 var elasticClient = new elasticsearch.Client({
-  host: "http://localhost:9200",
-  log: "info"
+  host: "https://elastic:oiFoop628XWfCbaWszNM64rr@4980a3bd130a43e686285e27eada2682.us-east-1.aws.found.io:9243/",
+
 });
 
 var indexName = "entities";
@@ -26,7 +26,7 @@ function initIndex() {
       index: indexName
     })
     .then(() => {
-      configureIndex().then(resp=>console.log(resp));
+      configureIndex().then(resp => console.log(resp));
     });
 }
 
@@ -166,3 +166,19 @@ function searchQuery(title, type) {
   return elasticClient.search(query);
 }
 exports.searchQuery = searchQuery;
+
+function pingCluster() {
+  return elasticClient.ping(
+    {
+      requestTimeout: 30000
+    },
+    function(error) {
+      if (error) {
+        console.error("elasticsearch cluster is down!");
+      } else {
+        console.log("All is well");
+      }
+    }
+  );
+}
+exports.pingCluster = pingCluster;

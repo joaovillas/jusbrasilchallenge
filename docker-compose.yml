@@ -1,26 +1,6 @@
 version: "3"
 
 services:
-  elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:5.6.2
-    environment:
-      - discovery.type=single-node
-      - http.host=0.0.0.0
-      - transport.host=127.0.0.1
-      - xpack.security.enabled=false
-      - ES_JAVA_OPTS=-Xms256m -Xmx512m
-    ulimits:
-      memlock:
-        soft: -1
-        hard: -1
-    volumes:
-      - .:/usr/share/elasticsearch/data
-
-    ports:
-      - 9200:9200
-    networks:
-      - bridge
-
   client:
     build: ./front
     container_name: clientchallenge
@@ -33,8 +13,7 @@ services:
     entrypoint: "npm start"
 
     depends_on:
-      elasticsearch:
-        condition: service_healthy
+      - api
 
     restart: on-failure
 
@@ -48,11 +27,8 @@ services:
     networks:
       - bridge
     entrypoint: "npm start"
-    depends_on:
-      
+
     restart: on-failure
-    links:
-      - elasticsearch
 
 networks:
   bridge:

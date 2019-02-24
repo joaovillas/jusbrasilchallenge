@@ -4,7 +4,8 @@ var elasticsearch = require("./config/elasticsearch");
 var bodyParser = require("body-parser");
 var cors = require("cors");
 var extractor = require("./extractors/extractor");
-var axios = require("axios");
+
+extractor.executeExtractor();
 
 app = express();
 app.use(bodyParser.json());
@@ -12,6 +13,7 @@ app.use("/entities", entitiesrouter);
 app.use(cors());
 
 app.listen(5000, () => {
+  elasticsearch.pingCluster();
   elasticsearch.indexExists().then(response => {
     if (response === false) {
       elasticsearch
@@ -19,24 +21,28 @@ app.listen(5000, () => {
         .then(() => {
           elasticsearch
             .initMapping()
-            .then(response => {})
-            .catch(err => console.log(err));
+            .then(response => {
+              console.log("CRIOU O MAPA", response);
+            })
+            .catch(err => console.log("Erro ao criar o mapa", err));
         })
         .catch(err => console.log(err));
     } else {
       elasticsearch
         .deleteIndex()
-        .then(
+        .then(() => {
           elasticsearch
             .initIndex()
             .then(() => {
               elasticsearch
                 .initMapping()
-                .then(response => {})
-                .catch(err => console.log(err));
+                .then(response => {
+                  console.log("CRIOU O MAPA", response);
+                })
+                .catch(err => console.log("Erro ao criar o mapa", err));
             })
-            .catch(err => console.log(err))
-        )
+            .catch(err => console.log(err));
+        })
         .catch(err => console.log(err));
     }
   });
