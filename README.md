@@ -11,7 +11,7 @@ This is my repo for the challenge of interniship job at Jusbrasil
  - Docker
 
 
-### how to use ?
+### how to create a entity ?
 
 ``` 
 
