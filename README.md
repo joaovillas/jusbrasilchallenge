@@ -11,7 +11,7 @@ This is my repo for the challenge of interniship job at Jusbrasil
  - Docker
 
 
-### how to create a entity ?
+### How to create a entity ?
 
 ``` 
 
@@ -19,7 +19,7 @@ curl -XPOST -H "Content-type: application/json" -d '{ "title": "TEST", "type": "
 
 ``` 
 
-### how to get the entity created?
+### How to get the entity created?
 
 ``` 
 
@@ -27,7 +27,7 @@ curl -XGET 'http://jpbahiense.com:5000/entities/?q=<NAME OF THE ENTITY>'
 
 ``` 
 
-### how to get by entity_type?
+### How to get by entity_type?
 
 ``` 
 
