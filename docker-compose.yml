@@ -11,7 +11,8 @@ services:
     networks:
       - bridge
     entrypoint: "npm start"
-
+    link:
+      - api
     depends_on:
       - api
 
