@@ -1,7 +1,7 @@
 # Jusbrasil Challenge Repo
-this is my repo for the challenge of interniship job at ## Jusbrasil 
+This is my repo for the challenge of interniship job at ## Jusbrasil 
 
-## link: http://jpbahiense.com 
+### WebSite: http://jpbahiense.com 
 
 ### Tecnologies:
  - React JS
