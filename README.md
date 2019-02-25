@@ -31,7 +31,7 @@ curl -XGET 'http://jpbahiense.com:5000/entities/?q=<NAME OF THE ENTITY>'
 
 ``` 
 
-curl -XGET 'http://jpbahiense.com:5000/entities/?q=<NAME OF THE ENTITY>&entity_type=<TYPE OF THE ENTITIE>'
+curl -XGET 'http://jpbahiense.com:5000/entities/?q=<NAME OF THE ENTITY>&entity_type=<TYPE OF THE ENTITY>'
 
 ``` 
 
