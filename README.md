@@ -1,2 +1,29 @@
 # jusbrasilchallenge
-jusbrasil
+this is my repo of the challenge for interniship job at ## Jusbrasil 
+
+## link: http://jpbahiense.com 
+
+### how to use ?
+
+``` 
+
+curl -XPOST -H "Content-type: application/json" -d '{ "title": "TEST", "type": " TEST AGAIN " }' 'http://jpbahiense.com:5000/entities'
+
+``` 
+
+### how to get the entity created?
+
+``` 
+
+curl -XGET 'http://jpbahiense.com:5000/entities/?q=<NAME OF THE ENTITY>'
+
+``` 
+
+### how to get by entity_type?
+
+``` 
+
+curl -XGET 'http://jpbahiense.com:5000/entities/?q=<NAME OF THE ENTITY>&entity_type=<TYPE OF THE ENTITIE>'
+
+``` 
+
