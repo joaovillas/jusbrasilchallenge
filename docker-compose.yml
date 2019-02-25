@@ -9,9 +9,9 @@ services:
     volumes:
       - .:/client
     networks:
-      - bridge
+      - bridgechallenge
     entrypoint: "npm start"
-    link:
+    links:
       - api
     depends_on:
       - api
@@ -26,10 +26,11 @@ services:
     volumes:
       - .:/api
     networks:
-      - bridge
+      - bridgechallenge
     entrypoint: "npm start"
 
     restart: on-failure
 
 networks:
-  bridge:
+  bridgechallenge:
+    driver: bridge
