@@ -5,7 +5,7 @@ var bodyParser = require("body-parser");
 var cors = require("cors");
 var extractor = require("./extractors/extractor");
 
-extractor.executeExtractor();
+
 
 app = express();
 app.use(bodyParser.json());
@@ -22,6 +22,7 @@ app.listen(5000, () => {
           elasticsearch
             .initMapping()
             .then(response => {
+              extractor.executeExtractor();
               console.log("CRIOU O MAPA", response);
             })
             .catch(err => console.log("Erro ao criar o mapa", err));
@@ -37,6 +38,7 @@ app.listen(5000, () => {
               elasticsearch
                 .initMapping()
                 .then(response => {
+                  extractor.executeExtractor();
                   console.log("CRIOU O MAPA", response);
                 })
                 .catch(err => console.log("Erro ao criar o mapa", err));
