@@ -3,6 +3,15 @@ this is my repo for the challenge of interniship job at ## Jusbrasil
 
 ## link: http://jpbahiense.com 
 
+### Tecnologies:
+ - React JS
+ - Node JS
+ - Material UI
+ - ElasticSearch
+ - Docker
+ - 
+
+
 ### how to use ?
 
 ``` 
