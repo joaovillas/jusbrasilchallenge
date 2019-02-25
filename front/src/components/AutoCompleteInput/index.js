@@ -58,7 +58,7 @@ function getSuggestions(value) {
   const inputValue = deburr(value.trim()).toLowerCase();
 
   return axios
-    .get("http://localhost:5000/entities/search?q=" + inputValue)
+    .get("http://0.0.0.0:5000/entities/search?q=" + inputValue)
     .then(resp => {
       try{
         return resp.data.suggest.titleSuggester[0].options;
