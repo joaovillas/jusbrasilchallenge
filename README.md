@@ -1,5 +1,5 @@
 # Jusbrasil Challenge Repo
-this is my repo of the challenge for interniship job at ## Jusbrasil 
+this is my repo for the challenge of interniship job at ## Jusbrasil 
 
 ## link: http://jpbahiense.com 
 
